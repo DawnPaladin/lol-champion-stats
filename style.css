@@ -1,5 +1,5 @@
 .champ-icon {
-    position: relative;
+    position: absolute;
     width: 50px;
     opacity: 0.8;
 }
