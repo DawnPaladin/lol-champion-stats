@@ -1,0 +1,11 @@
+.champ-icon {
+    position: relative;
+    width: 50px;
+    opacity: 0.8;
+}
+
+.graph {
+    position: relative;
+    width: 250px;
+    height: 5000px;
+}
