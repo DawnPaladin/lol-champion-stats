@@ -4,12 +4,13 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
 
     var imgPath = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/Poppy.png';
 
+    var yScale = d3.scaleLinear()
+        .domain([325, 355])
+        .range([7 * 50, 0]);
+
     var generateMoveSpeed = function() {
         var data = [];
         var record = {};
-        var yScale = d3.scaleLinear()
-            .domain([325, 355])
-            .range([0, 7 * 50]);
 
         $.each(champions, function(champName, champObj) {
 
@@ -22,13 +23,15 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
             } else {
                 record[obj.moveSpeed] += 1;
             }
-            obj.xOffset = record[obj.moveSpeed] * 50;
+            obj.xOffset = 40 + record[obj.moveSpeed] * 50;
 
             data.push(obj);
         });
         return data;
     }
     data = generateMoveSpeed();
+
+    var yAxis = d3.axisRight(yScale);
 
     d3.select('.graph')
       .selectAll('img')
@@ -38,8 +41,12 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
         .attr('class', 'champ-icon')
         .attr('src', function(d) { return d.imgPath; } )
         .attr('style', function(d) {
-            return 'bottom: ' + d.moveSpeed + 'px; left: ' + d.xOffset + 'px'
+            return 'top: ' + d.moveSpeed + 'px; left: ' + d.xOffset + 'px'
         })
-        // .attr('style', function(d) { return 'bottom: ' + d.moveSpeed } )
     ;
+    d3.select('.graph').append('svg')
+      .attr('width', 500)
+      .attr('height', 500)
+      .append('g')
+      .call(yAxis);
 });
