@@ -7,17 +7,21 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
     var generateMoveSpeed = function() {
         var data = [];
         var record = {};
+        var yScale = d3.scaleLinear()
+            .domain([325, 355])
+            .range([0, 7 * 50]);
+
         $.each(champions, function(champName, champObj) {
+
             var obj = {};
             obj.imgPath = 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/' + champName + '.png';
-            obj.moveSpeed = champObj.stats.movespeed * 10;
+            obj.moveSpeed = yScale(champObj.stats.movespeed);
             
             if (record[obj.moveSpeed] === undefined) {
                 record[obj.moveSpeed] = 0;
             } else {
                 record[obj.moveSpeed] += 1;
             }
-
             obj.xOffset = record[obj.moveSpeed] * 50;
 
             data.push(obj);
