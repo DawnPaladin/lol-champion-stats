@@ -8,7 +8,7 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
 
     var yScale = d3.scaleLinear()
         .domain([325, 355])
-        .range([(iconHeight + spaceBetweenRows) * (numberOfRows) , 0]);
+        .range([(iconHeight + spaceBetweenRows) * numberOfRows, 0]);
 
     var generateMoveSpeed = function() {
         var data = [];
@@ -44,24 +44,5 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
             return 'top: ' + d.moveSpeed + 'px; left: ' + d.xOffset + 'px'
         })
     ;
-    var svg = d3.select('svg');
-    var g = svg.append('g');
-    var margin = { top: 20, right: 0, bottom: 20, left: 0};
-    var width = svg.attr('width');
-    var formatNumber = d3.format('.1f');
-
-    var yAxis = d3.axisRight(yScale);
-    yAxis.tickSize(width);
-    
-
-    function customYAxis(g) { // numbers on y-axis
-        g.call(yAxis);
-        g.select('.domain').remove();
-        g.selectAll('.tick:not(:first-of-type) line').attr('stroke', '#777').attr('stroke-dasharray', '2,2');
-        g.selectAll('.tick text').attr('x', 4).attr('dy', -4);        
-    }
-
-    g.append('g').call(customYAxis);
-
 
 });
