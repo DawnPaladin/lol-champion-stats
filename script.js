@@ -28,16 +28,18 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
         .selectAll('.speedRow')
         .data(d3.keys(moveSpeeds))
         .enter()
-        .append('div').attr('class', 'speedRow').attr('data-speed', function(d) { return d; })
+        .append('div').attr('class', 'speed-row').attr('data-speed', function(d) { return d; })
         .sort(function(a, b) {
             return a < b;
         })
+        .append('div').attr('class', 'speed-label').text(function(d) { return d; })
     ;
 
-    $('.speedRow').each(function(index, row) {
+    $('.speed-row').each(function(index, row) {
         var currentSpeed = $(row).data('speed');
         var champs = moveSpeeds[currentSpeed];
         d3.select(row)
+            .append('div').attr('class', 'champs')
             .selectAll('img')
             .data(champs)
             .enter()
