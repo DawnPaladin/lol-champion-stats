@@ -22,3 +22,18 @@ body {
 .speed-label {
     margin-right: 15px;
 }
+
+.sidebar {
+    float: right;
+    width: 360px;
+    background-color: lightgray;
+    padding: 1em;
+    border-radius: 1em;
+}
+.boots {
+    width: 50px;
+}
+.img-left {
+    float: left;
+    margin-right: 1em;
+}
