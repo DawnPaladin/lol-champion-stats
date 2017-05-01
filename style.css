@@ -7,14 +7,18 @@ h2 {
     clear: both;
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
 .champ-icon {
     width: 50px;
     margin: 2px;
 }
 
 .graph {
-    float: left;
-    max-width: 1000px;
+    flex-shrink: 2;
 }
 
 .speed-row {
@@ -29,8 +33,7 @@ h2 {
 }
 
 .sidebar {
-    float: left;
-    width: 360px;
+    width: 420px;
     background: linear-gradient(180deg, silver, white);
     padding: 10px;
     margin: 0.5em;
