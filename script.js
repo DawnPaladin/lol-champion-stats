@@ -24,11 +24,19 @@ $.ajax('http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json')
     moveSpeeds = generateMoveSpeed();
     console.log(moveSpeeds);
 
+    var color = d3.interpolateRdYlGn;
+    var yScale = d3.scaleLinear()
+        .domain([325, 355])
+        .range([0.2, 0.8]);
+
     d3.select('.graph')
         .selectAll('.speedRow')
         .data(d3.keys(moveSpeeds))
         .enter()
-        .append('div').attr('class', 'speed-row').attr('data-speed', function(d) { return d; })
+        .append('div')
+            .attr('class', 'speed-row')
+            .attr('data-speed', function(d) { return d; })
+            .attr('style', function(d) { return 'background-color: ' + color(yScale(d))})
         .sort(function(a, b) {
             return a < b;
         })

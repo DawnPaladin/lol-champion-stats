@@ -2,21 +2,26 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+h2 {
+    margin: 0 0 0 10px;
+    clear: both;
+}
+
 .champ-icon {
     width: 50px;
     margin: 2px;
 }
 
 .graph {
-    position: relative;
-    height: 500px;
+    float: left;
+    max-width: 1000px;
 }
 
 .speed-row {
     display: flex;
     align-items: center;
-    margin: 10px;
-    
+    margin: 8px;
+    padding: 8px;
 }
 
 .speed-label {
@@ -24,11 +29,17 @@ body {
 }
 
 .sidebar {
-    float: right;
+    float: left;
     width: 360px;
-    background-color: lightgray;
-    padding: 1em;
-    border-radius: 1em;
+    background: linear-gradient(180deg, silver, white);
+    padding: 10px;
+    margin: 0.5em;
+}
+.sidebar p:first-of-type {
+    margin-top: 0;
+}
+.sidebar p:last-of-type {
+    margin-bottom: 0;
 }
 .boots {
     width: 50px;
